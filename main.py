@@ -13,10 +13,16 @@ def main():
         for row in articles:
             artNo = row[0]
             bestand = row[1]
-            printLog(f"{artNo}: {bestand} ({aktArticle}/{totArticle})")
+            printLog(f"{artNo}: {bestand} ({aktArticle}/{totArticle}) => ", True)
             artId = getShopwareArticleId(args.url, shopwareToken, artNo)
             if artId:
-                updateArticleStock(args.url, shopwareToken, artId, bestand)
+                statusCode = updateArticleStock(args.url, shopwareToken, artId, bestand)
+                if statusCode == 200 or statusCode == 204:
+                    print("OK")
+                else:
+                    print("FAIL")
+            else: 
+                print("FAIL")
             aktArticle += 1
 
 

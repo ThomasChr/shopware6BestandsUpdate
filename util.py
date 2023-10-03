@@ -5,8 +5,11 @@ import datetime
 myPid = os.getpid()
 
 
-def printLog(logtext):
-    print(datetime.datetime.now().astimezone().isoformat() + " (" + str(myPid) + ") => " + logtext, flush=True)
+def printLog(logtext, noNewline):
+    if noNewline:
+        print(datetime.datetime.now().astimezone().isoformat() + " (" + str(myPid) + ") => " + logtext, flush=True, end="")
+    else:
+        print(datetime.datetime.now().astimezone().isoformat() + " (" + str(myPid) + ") => " + logtext, flush=True)
 
 
 def getShopwareToken(url, username, passwort):
@@ -32,4 +35,5 @@ def getShopwareArticleId(url, shopwareToken, articleNo):
 def updateArticleStock(url, shopwareToken, productID, stock):
     headers = {"Accept": "application/json", "Authorization": "Bearer " + shopwareToken}
     payload = {"stock": int(stock)}
-    requests.patch(url + f"/api/product/{productID}", json=payload, headers=headers)
+    r = requests.patch(url + f"/api/product/{productID}", json=payload, headers=headers)
+    return r.status_code
