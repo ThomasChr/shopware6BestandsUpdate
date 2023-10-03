@@ -15,7 +15,8 @@ def main():
             bestand = row[1]
             printLog(f"{artNo}: {bestand} ({aktArticle}/{totArticle})")
             artId = getShopwareArticleId(args.url, shopwareToken, artNo)
-            updateArticleStock(args.url, shopwareToken, artId, bestand)
+            if artId:
+                updateArticleStock(args.url, shopwareToken, artId, bestand)
             aktArticle += 1
 
 
