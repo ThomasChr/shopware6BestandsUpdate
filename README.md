@@ -16,6 +16,7 @@ Die .csv-Datei muss wie folgt aufgebaut sein:
 | ART0815 | 12 |
 | GUMMIENTE | 14 |
 | WASSER_1_l | 23 |
+| 150007 | 4 |
 
 **ACHTUNG: Die .csv-Datei darf KEINE Überschrift beinhalten - einfach nur Artikelnummer und Bestand in jeder Zeile!**
 
