@@ -1,0 +1,23 @@
+name: buildWithArtifacts
+
+on:
+  workflow_dispatch:
+
+jobs:
+  WindowsBuild:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: check out repository
+        uses: actions/checkout@v3
+
+      - name: Pyinstaller
+        uses: JackMcKew/pyinstaller-action-windows@main
+        with:
+          path: .
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: WindowsRelease_${{github.sha}}
+          path: dist/windows
