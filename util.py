@@ -5,7 +5,7 @@ import datetime
 myPid = os.getpid()
 
 
-def printLog(logtext, noNewline):
+def printLog(logtext, noNewline=False):
     if noNewline:
         print(datetime.datetime.now().astimezone().isoformat() + " (" + str(myPid) + ") => " + logtext, flush=True, end="")
     else:
