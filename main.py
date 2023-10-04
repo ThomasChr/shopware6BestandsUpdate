@@ -7,7 +7,7 @@ from util import printLog, getShopwareToken, getShopwareArticleId, updateArticle
 def main():
     shopwareToken = getShopwareToken(args.url, args.username, args.passwort)
     with open(args.datei) as csv_file:
-        articles = list(csv.reader(csv_file, delimiter=','))
+        articles = list(csv.reader(csv_file, delimiter=args.trennzeichen))
         aktArticle = 1
         totArticle = len(articles)
         for row in articles:
@@ -21,7 +21,7 @@ def main():
                     print("OK")
                 else:
                     print("FAIL")
-            else: 
+            else:
                 print("FAIL")
             aktArticle += 1
 
@@ -33,6 +33,7 @@ if __name__ == '__main__':
     argParser.add_argument("--username", help="Username", required=True)
     argParser.add_argument("--passwort", help="Passwort", required=True)
     argParser.add_argument("--datei", help="Pfad zur .csv-Datei", required=True)
+    argParser.add_argument("--trennzeichen", help="Trennzeichen welches in der csv-Datei genutzt wird", default=",")
     args = argParser.parse_args()
     main()
     printLog("***********************************END***********************************************")

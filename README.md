@@ -13,10 +13,10 @@ Die .csv-Datei muss wie folgt aufgebaut sein:
 
 | ARTIKELNUMMER | BESTAND |
 |---------------|---------|
-| ART0815 | 12 |
-| GUMMIENTE | 14 |
-| WASSER_1_l | 23 |
-| 150007 | 4 |
+| ART0815       | 12      |
+| GUMMIENTE     | 14      |
+| WASSER_1_l    | 23      |
+| 150007        | 4       |
 
 **ACHTUNG: Die .csv-Datei darf KEINE Überschrift beinhalten - einfach nur Artikelnummer und Bestand in jeder Zeile!**
 
@@ -34,6 +34,12 @@ shopwareUpdater --url=https://www.meinshop.de --username=admin --passwort=geheim
 ```
 
 Eine entsprechende .exe-Datei kann man unter [Releases](https://github.com/ThomasChr/shopware6BestandsUpdate/releases) runterladen
+
+### Zusätzliche Parameter:
+```
+--trennzeichen=;
+```
+-> Anderes Trennzeichen (statt `,`) für das lesen der csv-Datei verwenden
 
 ### Bekannte Probleme
 
