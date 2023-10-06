@@ -1,12 +1,16 @@
 # shopware6BestandsUpdate
 
-Updated den Bestand von Shopware 6 Artikeln ausgehend von einer .csv-Datei
+Updated den Bestand von Shopware 6 Artikeln von einer .csv-Datei
 
 Ausgehend von diesem Forumsbeitrag im Shopware 6 Forum: https://forum.shopware.com/t/lagerbestand-csv-import/68521
 
 **Das Problem:**
 
 Updaten des Bestandes von Artikeln in Shopware 6 setzt zwingend voraus dass man die ProductID ermittelt um dann mit dem Datei-Import arbeiten zu können.
+
+—-
+
+Dieses Python-Script (welches als fertige Windows-.exe verfügbar ist) kann direkt eine .csv-Datei ohne die Shopware ProductID mit Beständen importieren
 
 Die .csv-Datei muss wie folgt aufgebaut sein:
 (Trennzeichen: ",")
