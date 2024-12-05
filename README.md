@@ -42,7 +42,3 @@ Eine entsprechende .exe-Datei kann man unter [Releases](https://github.com/Thoma
 --trennzeichen=;
 ```
 -> Anderes Trennzeichen (statt `,`) für das lesen der csv-Datei verwenden
-
-### Bekannte Probleme
-
-Das Shopware Token wird nach einem einmaligen Login nicht mehr erneuert. Dies sehe ich aktuell aber nicht als Problem da ich davon ausgehe dass man durchaus 10.000 Artikel (grob aus dem Kopf geschätzt) updaten kann bevor das Token abläuft
