@@ -42,3 +42,8 @@ Eine entsprechende .exe-Datei kann man unter [Releases](https://github.com/Thoma
 --trennzeichen=;
 ```
 -> Anderes Trennzeichen (statt `,`) für das lesen der csv-Datei verwenden
+
+### Erstellen des Releases:
+```
+pyinstaller --onefile main.py --name shopwareUploader
+```
