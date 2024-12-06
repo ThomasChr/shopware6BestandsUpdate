@@ -1,3 +1,5 @@
+version = "v0.4.2"
+
 import csv
 import argparse
 
@@ -32,6 +34,7 @@ def main():
 
 if __name__ == '__main__':
     printLog("**********************************START**********************************************")
+    printLog(f"{version}")
     argParser = argparse.ArgumentParser()
     argParser.add_argument("--url", help="URL zum Shop", required=True)
     argParser.add_argument("--username", help="Username", required=True)
