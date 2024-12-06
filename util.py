@@ -30,5 +30,5 @@ def getShopwareArticleId(url, shConn: ShopwareConnection, articleNo):
 
 def updateArticleStock(url, shConn, productID, stock):
     payload = {"stock": int(stock)}
-    r = shConn.makeAuthenticatedRequest("/api/search/product", shConn.requestsSession.post, payload)
+    r = shConn.makeAuthenticatedRequest(f"/api/product/{productID}", shConn.requestsSession.patch, payload, returnType="text")
     return r.status_code

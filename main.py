@@ -1,4 +1,4 @@
-version = "v0.4.2"
+version = "v1.0.0"
 
 import csv
 import argparse
