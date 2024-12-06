@@ -51,21 +51,21 @@ class ShopwareConnection:
         else:
             return self.requestsSession.post(self.url + requrl, headers=headers, json=payload).json()
 
-    def makeAuthenticatedRequest(self, requrl: str, func: typing.Callable, payload: dict | None = None, data: typing.Any | None = None) -> dict:
+    def makeAuthenticatedRequest(self, requrl: str, func: typing.Callable, payload: dict | None = None, data: typing.Any | None = None, returnType = "json") -> dict:
         with tokenlock:
             if (datetime.datetime.now() + datetime.timedelta(minutes=1)) > self.tokenExpiry:
                 self.token, self.refreshToken, self.tokenExpiry = self.__getRefreshToken()
-        r = self.__makeAuthenticatedRequest(requrl, func, payload, data)
+        r = self.__makeAuthenticatedRequest(requrl, func, payload, data, returnType)
         # Deadlock, wait and try again
         if "errors" in r and len(r["errors"]) > 0 and isinstance(r["errors"], list) and r["errors"][0]["status"] == '500' and r["errors"][0]["code"] == '1213':
             for _ in range(10):
                 time.sleep(0.010)
-                r = self.__makeAuthenticatedRequest(requrl, func, payload, data)
+                r = self.__makeAuthenticatedRequest(requrl, func, payload, data, returnType)
                 if "errors" not in r:
                     break
         return r
 
-    def __makeAuthenticatedRequest(self, requrl: str, func: typing.Callable, payload: dict | None, data: typing.Any | None = None) -> dict:
+    def __makeAuthenticatedRequest(self, requrl: str, func: typing.Callable, payload: dict | None, data: typing.Any | None = None, returnType = "json") -> dict:
         if data:
             headers = {"Accept": "application/json", "Authorization": "Bearer " + self.token}
             r = func(self.url + requrl, headers=headers, data=data)
@@ -75,8 +75,11 @@ class ShopwareConnection:
         else:
             headers = {"Accept": "application/json", "Authorization": "Bearer " + self.token}
             r = func(self.url + requrl, headers=headers)
-        try:
-            retVal = r.json()
-        except:
-            retVal = r.text
+        if returnType == "json":
+            try:
+                retVal = r.json()
+            except:
+                retVal = r.text
+        else:
+            retVal = r
         return retVal
